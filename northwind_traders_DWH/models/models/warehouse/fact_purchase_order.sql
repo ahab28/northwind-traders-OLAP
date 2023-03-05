@@ -40,6 +40,7 @@ WITH source AS(
     ON c.id = o.customer_id
     WHERE o.customer_id IS NOT NULL
 ),
+
 deduplicated_source AS (
     SELECT *,
 
