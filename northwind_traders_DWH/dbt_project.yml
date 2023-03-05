@@ -34,5 +34,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   northwind_traders_DWH:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
+      +enabled: true
       +materialized: view
+      +schema: stg_northwind
