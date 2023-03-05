@@ -16,8 +16,8 @@ WITH source AS(
         p.attachments,
         current_timestamp() AS insertion_timestamp,
     FROM {{ ref('stg_products') }} p
-    LEFT JOIN {{ ref('stg_supplier') }} s
-    ON s.id = p.supplier_ids
+    LEFT JOIN {{ ref('stg_suppliers') }} s
+    ON s.id = p.supplier_id
 ),
 deduplicated_source AS (
     SELECT *,
@@ -30,4 +30,4 @@ SELECT *
 EXCEPT 
     (duplicate),
 FROM deduplicated_source
-WHERE duplicate = "true"
+WHERE duplicate = "false"

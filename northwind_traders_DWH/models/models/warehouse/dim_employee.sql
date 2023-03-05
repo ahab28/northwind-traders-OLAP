@@ -30,4 +30,4 @@ SELECT *
 EXCEPT 
     (duplicate),
 FROM deduplicated_source
-WHERE duplicate = "true"
+WHERE duplicate = "false"
