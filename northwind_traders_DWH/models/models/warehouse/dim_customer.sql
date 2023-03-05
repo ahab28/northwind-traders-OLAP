@@ -26,7 +26,8 @@ deduplicated_source AS (
             CASE WHEN (ROW_NUMBER() OVER(PARTITION BY customer_id)) = 1 THEN "false" ELSE "true" END as duplicate
     FROM source
 )
-SELECT *,
-EXCEPT (duplicate)
+SELECT *
+EXCEPT 
+    (duplicate),
 FROM deduplicated_source
 WHERE duplicate = "false"

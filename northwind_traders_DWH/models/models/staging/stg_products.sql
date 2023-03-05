@@ -1,8 +1,10 @@
 WITH source AS (
-    SELECT * FROM {{source('northwind', 'products')}}
+    SELECT p.*, cast(p.supplier_ids AS INTEGER) AS supplier_id FROM {{source('northwind', 'products')}} p
 )
 
 SELECT 
-    *,
-    CURRENT_TIMESTAMP() AS ingestion_timestamp
+    * EXCEPT (supplier_ids),
+    CURRENT_TIMESTAMP() AS ingestion_timestamp,
+    
  FROM source
+ WHERE supplier_ids NOT LIKE "%;%"
