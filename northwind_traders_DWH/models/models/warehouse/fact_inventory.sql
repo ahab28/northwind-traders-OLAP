@@ -1,4 +1,12 @@
-with source AS (
+{{ config(
+    partition_by={
+      "field": "order_date",
+      "data_type": "date",
+      "granularity": "year"
+    }
+)}}
+
+WITH source AS (
     SELECT 
             i.*,
             i.id AS inventory_id,

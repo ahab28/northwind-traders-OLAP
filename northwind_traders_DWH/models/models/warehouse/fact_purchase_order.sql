@@ -1,3 +1,11 @@
+{{ config(
+    partition_by={
+      "field": "order_date",
+      "data_type": "date",
+      "granularity": "year"
+    }
+)}}
+
 WITH source AS(
     SELECT
         c.id AS customer_id,
