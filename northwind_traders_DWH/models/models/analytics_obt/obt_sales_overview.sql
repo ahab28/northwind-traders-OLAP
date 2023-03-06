@@ -1,3 +1,9 @@
+{{ config(
+  materialized='view',
+  schema='obt_northwind'
+) }}
+
+
 WITH source AS (
     SELECT
         c.customer_id,
@@ -19,7 +25,6 @@ WITH source AS (
         c.notes           AS customer_notes,
         c.attachments     AS customer_attachments,
         e.employee_id,
-        e.last_name       AS employee_unique_employee_id,
         e.company         AS employee_company,
         e.last_name       AS employee_last_name,
         e.first_name      AS employee_first_name,
